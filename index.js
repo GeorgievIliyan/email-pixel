@@ -4,6 +4,7 @@ const express = require('express')
 const { MongoClient } = require("mongodb")
 
 const app = express()
+app.set("trust proxy", true)
 const PORT = process.env.PORT || 3000
 const CONNECTION_STRING = process.env.CONNECTION_STRING
 const ADMIN_SECRET = process.env.ADMIN_SECRET

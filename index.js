@@ -1,10 +1,12 @@
+require("dotenv").config()
+
 const express = require('express')
 const { MongoClient } = require("mongodb")
 
 const app = express()
 const PORT = process.env.PORT || 3000
 const CONNECTION_STRING = process.env.CONNECTION_STRING
-const ADMIN_SECRET = 1234
+const ADMIN_SECRET = process.env.ADMIN_SECRET
 
 const PIXEL = Buffer.from(
   "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
@@ -15,7 +17,7 @@ let db;
 
 async function connectDB() {
   const client = new MongoClient(CONNECTION_STRING)
-  await client.connect
+  await client.connect()
   db = client.db("results_db")
   console.log("Connected to MongoDB")
 }
